@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+// use App\Models\Institute;
+// use App\Models\StudentClass;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 
@@ -24,6 +26,8 @@ class StudentController extends Controller
      */
     public function create()
     {
+        //$institute = Institute::where('status',1)->pluck('name','id');
+        //$student_class = StudentClass::where('status',1)->pluck('name','id');
         return view('frontend.studentregister');
     }
 
@@ -70,7 +74,9 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view ('frontend.studentregister', compact('student'));
+        //$institute = Institute::where('status',1)->pluck('name','id');
+        //$student_class = StudentClass::where('status',1)->pluck('name','id');
+        return view ('frontend.studentregister', compact('student', 'institute', 'student_class'));
     }
 
     /**
