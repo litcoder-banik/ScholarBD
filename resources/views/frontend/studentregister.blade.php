@@ -51,7 +51,7 @@
                         <div class="form-group mb-5">
 
                             <input type="radio" class="form-check-input" name="school_madrasa" id="school"
-                            value="{{old('school_madrasa') == 'school' ? 'checked' : '',@$student->school)}}">>
+                                value="school" {{ old('school_madrasa') == 'school' ? 'checked' : '' }}>
                             <label class="form-check-label" for="school">School</label>
 
                             <input type="radio" class="form-check-input" name="school_madrasa" id="madrasha"
