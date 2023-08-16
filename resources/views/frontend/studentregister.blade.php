@@ -31,6 +31,9 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="{{ url('frontend/assets/css/registerform.css') }}" />
+    <script type="text/javascript" src="{{ asset('js/jquerys.js') }}"></script>
+    <script src="{{ url('frontend/assets/js/vendor/form.js') }}"></script>
+
 </head>
 
 <body>
@@ -41,7 +44,7 @@
                 class="form" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <h1 class="text-center mb-5">Registration Form</h1>
+                <h1 class="reg text-center mb-5">Registration Form</h1>
                 <div class="row g-3 mt-5">
                     <div class="col-md">
 
@@ -77,23 +80,25 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div>
+                        </div> 
+                   
+                        <div class="col-md">
+                    <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js">
+                    </script>
+                    <h3>Upload Image</h3>
+                    <canvas id= "canv1" ></canvas>
 
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="area">Area<code>*</code></label>
-                            <input type="text" class="form-control @error('area') is-invalid @enderror"
-                                name="{{ 'area' }}" id="area" value="{{ old('area', @$student->area) }}"
-                                placeholder="Area" />
-                            @error('area')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+                    <p>
+                    Filename:
+                    <input type="file" multiple="false" accept="image/*" id=finput onchange="upload()">
+                    </p> 
+                    </div> 
+                      
+                    
+                    
+                  
 
-                </div>
-
-                <h6>Student Information:</h6>
+                <h6 class="color">Student Information:</h6>
 
                 <div class="row g-3 mt-2 mb-4">
                     <div class="col-md">
@@ -112,10 +117,10 @@
                     <div class="col-md">
 
                         <div class="form-group">
-                            <label for="name_bn">Name <code>*(Bangla)</code></label>
+                            <label for="name_bn">Name <code>*(বাংলা)</code></label>
                             <input type="text" class="form-control @error('name_bn') is-invalid @enderror"
                                 name="{{ 'name_bn' }}" id="name_bn" value="{{ @$student->name_bn }}"
-                                placeholder="Name" />
+                                placeholder="নাম" />
                             @error('name_bn')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -232,6 +237,8 @@
                             </div>
                         </div>
                     </div>
+                   <br>
+                    
                     <div class="col-md">
                         <div class="form-group">
                             <label for="blood_group">Blood Group <code>*</code></label>
@@ -260,12 +267,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="cols-md">
+                        <div class="form-group">
+                            <label for="area">Area<code>*</code></label>
+                            <input type="text" class="form-control @error('area') is-invalid @enderror"
+                                name="{{ 'area' }}" id="area" value="{{ old('area', @$student->area) }}"
+                                placeholder="Area" />
+                            @error('area')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                </div>
+                <br>
 
 
 
 
 
-                <h6>Parents Information:</h6>
+                <h6 class="color">Parents Information:</h6>
 
                 <div class="row g-3 mt-2 mb-4">
                     <div class="col-md">
@@ -281,10 +302,10 @@
                     </div>
                     <div class="col-md">
                         <div class="form-group">
-                            <label for="father_name_bn">Father Name <code>*(Bangla)</code></label>
+                            <label for="father_name_bn">Father Name <code>*(বাংলা)</code></label>
                             <input type="text" class="form-control @error('father_name_bn') is-invalid @enderror"
                                 name="{{ 'father_name_bn' }}" id="father_name_bn"
-                                value="{{ old('father_name_bn') }}" placeholder="Father Name" />
+                                value="{{ old('father_name_bn') }}" placeholder="বাবার নাম" />
                             @error('father_name_bn')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -318,10 +339,10 @@
                     </div>
                     <div class="col-md">
                         <div class="form-group">
-                            <label for="mother_name_bn">Mother Name <code>*(Bangla)</code></label>
+                            <label for="mother_name_bn">Mother Name <code>*(বাংলা)</code></label>
                             <input type="text" class="form-control @error('mother_name_bn') is-invalid @enderror"
                                 name="{{ 'mother_name_bn' }}" id="mother_name_bn"
-                                value="{{ old('mother_name_bn') }}" placeholder="Mother Name" />
+                                value="{{ old('mother_name_bn') }}" placeholder="মায়ের নাম" />
                             @error('mother_name_bn')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -343,7 +364,8 @@
 
                 <div class="border mb-5"></div>
 
-                <h6 class="mb-5">Present Address:</h6>
+                <h6 class="color">Present Address:</h6>
+                <br>
                 <div class="form-group mb-5">
                     <label for="present_address">House Adress <code>*</code></label>
                     <input type="text" class="form-control @error('present_address') is-invalid @enderror"
@@ -354,7 +376,8 @@
                     @enderror
                 </div>
                 <div class="border"></div>
-                <h6 class="mt-5">Permanent Address:</h6>
+                <br>
+                <h6 class="color">Permanent Address:</h6>
                 <div class="row g-3 mt-3 mb-4">
                     <div class="col-md">
                         <div class="form-group">
@@ -457,7 +480,9 @@
                 </div>
 
                 <div class="border-gardient">
-                    <h6 class="mb-5">Absence of Guardian Information:</h6>
+                    <h6 class="color">Absence of Guardian Information:</h6>
+                    <br>
+                    <br>
                     <div class="row justify-content-center mb-3">
                         <div class="col-md-8">
                             <div class="row">
@@ -551,7 +576,8 @@
 
                 <div class="border mb-5"></div>
 
-                <h6 class="mb-5">Additional Information:</h6>
+                <h6 class="color">Additional Information:</h6>
+                <br>
                 <div class="form-group mb-5">
                     <label for="previous_scholarship_name_group">Previous Scholarship Organization (if
                         any)</label>
@@ -566,13 +592,7 @@
                 </div>
 
 
-                <div class="form-group mb-5">
-                    <label for="image" class="form-label">Please Upload Your Image<code>*</code></label>
-                    <input class="form-control" type="file" name="image" id="image" />
-                    @error('image')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+
 
                 <div class="row justify-content-end">
                     <button type="submit" class="btn btn-next">
